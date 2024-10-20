@@ -6,6 +6,7 @@
   <thead>
   <tr>
     <th>Title</th>
+    <th>Average Rating</th>
     <th>Actions</th>
   </tr>
   </thead>
@@ -13,6 +14,7 @@
   <% @movies.each do |movie| %>
     <tr>
       <td><%= movie.title %></td>
+      <td><%= movie.average_rating %> / 5</td>
       <td>
         <%= link_to 'Show', movie %>
         <%= link_to 'Edit', edit_movie_path(movie) %>
