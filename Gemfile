@@ -68,5 +68,5 @@ group :development do
 
   gem "devise"
 
-  gem "rest-client"
+  # gem "rest-client"
 end
