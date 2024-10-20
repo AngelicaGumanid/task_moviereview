@@ -1,0 +1,13 @@
+<h1>Movies</h1>
+
+<%= link_to 'Create New Movie', new_movie_path if user_signed_in? %>
+
+<ul>
+  <% @movies.each do |movie| %>
+    <li>
+      <%= link_to movie.title, movie_path(movie) %>
+      - Released: <%= movie.date_released %>
+      - Country: <%= movie.country_of_origin %>
+    </li>
+  <% end %>
+</ul>

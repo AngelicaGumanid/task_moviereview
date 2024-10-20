@@ -1,0 +1,9 @@
+<h1><%= @movie.title %></h1>
+
+<p><strong>Blurb:</strong> <%= @movie.blurb %></p>
+<p><strong>Release Date:</strong> <%= @movie.date_released %></p>
+<p><strong>Country of Origin:</strong> <%= @movie.country_of_origin %></p>
+<p><strong>Showing Start:</strong> <%= @movie.showing_start %></p>
+<p><strong>Showing End:</strong> <%= @movie.showing_end %></p>
+
+<%= link_to 'Back to Movies', movies_path %>
