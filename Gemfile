@@ -69,4 +69,7 @@ group :development do
   gem "devise"
 
   # gem "rest-client"
+
+  gem "kaminari"
+
 end
