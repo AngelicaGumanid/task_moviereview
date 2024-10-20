@@ -6,11 +6,11 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @movie.reviews.build(review_params)
-    @review.user = current_user  # Associate the review with the current user
+    @review.user = current_user
 
     if @review.save
       flash[:notice] = 'Review was successfully created.'
-      redirect_to @movie
+      redirect_to short_movie_path(@movie.short_url)
     else
       flash.now[:alert] = 'There was a problem creating the review.'
       render 'movies/show'
@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
   def update
     if @review.update(review_params)
       flash[:notice] = 'Your review was successfully updated.'
-      redirect_to @review.movie
+      redirect_to short_movie_path(@review.movie.short_url)
     else
       flash.now[:alert] = 'There was a problem updating your review.'
       render :edit, status: :unprocessable_entity
@@ -42,7 +42,7 @@ class ReviewsController < ApplicationController
   def authorize_user
     unless @review.user == current_user
       flash[:alert] = 'You are not authorized to edit this review.'
-      redirect_to @review.movie
+      redirect_to short_movie_path(@review.movie.short_url)
     end
   end
 
