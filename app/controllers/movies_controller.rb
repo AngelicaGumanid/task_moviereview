@@ -25,9 +25,13 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
-  def edit; end
+  def edit
+    @movie = Movie.find(params[:id])
+  end
 
   def update
+    @movie = Movie.find(params[:id]) # Find the movie by ID
+
     if @movie.update(movie_params)
       flash[:notice] = 'Movie was successfully updated.'
       redirect_to @movie
@@ -36,6 +40,7 @@ class MoviesController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
 
   private
 
