@@ -2,7 +2,24 @@ class MoviesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @movies = Movie.order(created_at: :desc).page(params[:page]).per(5)
+    @genres = Genre.all
+    @movies = Movie.all
+
+    if params[:genre_id].present?
+      @movies = @movies.joins(:genres).where(genres: { id: params[:genre_id] })
+    end
+
+    if params[:showing_status].present?
+      if params[:showing_status] == 'currently_showing'
+        @movies = @movies.where('showing_start <= ? AND showing_end >= ?', Date.today, Date.today)
+      elsif params[:showing_status] == 'upcoming'
+        @movies = @movies.where('showing_start > ?', Date.today)
+      end
+    end
+
+    @movies = @movies.order(:title).page(params[:page]).per(5)
+    # @movies = Movie.order(created_at: :desc).page(params[:page]).per(5)
+
   end
 
   def new

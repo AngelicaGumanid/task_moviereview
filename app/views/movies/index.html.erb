@@ -2,6 +2,20 @@
 
 <%= link_to 'Create New Movie', new_movie_path if user_signed_in? %>
 
+<%= form_with url: movies_path, method: :get, local: true do %>
+  <div>
+    <%= label_tag :genre_id, 'Filter by Genre' %>
+    <%= select_tag :genre_id, options_from_collection_for_select(@genres, :id, :name, params[:genre_id]), include_blank: true %>
+  </div>
+
+  <div>
+    <%= label_tag :showing_status, 'Showing Status' %>
+    <%= select_tag :showing_status, options_for_select([['Currently Showing', 'currently_showing'], ['Upcoming', 'upcoming']], params[:showing_status]), include_blank: true %>
+  </div>
+
+  <%= submit_tag 'Filter' %>
+<% end %>
+
 <table>
   <thead>
   <tr>
@@ -11,16 +25,22 @@
   </tr>
   </thead>
   <tbody>
-  <% @movies.each do |movie| %>
+  <% if @movies.empty? %>
     <tr>
-      <td><%= movie.title %></td>
-      <td><%= movie.average_rating %> / 5</td>
-      <td>
-        <%= link_to 'Show', short_movie_path(movie.short_url) %>
-        <%= link_to 'Edit', edit_movie_path(movie) %>
-        <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </td>
+      <td colspan="3">No movies found for the selected criteria.</td>
     </tr>
+  <% else %>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.title %></td>
+        <td><%= movie.average_rating %> / 5</td>
+        <td>
+          <%= link_to 'Show', short_movie_path(movie.short_url) %>
+          <%= link_to 'Edit', edit_movie_path(movie) %>
+          <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>
