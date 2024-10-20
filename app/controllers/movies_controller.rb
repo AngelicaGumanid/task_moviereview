@@ -23,8 +23,8 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @reviews = @movie.reviews.order(rating: :desc)
     @review = Review.new
-    @reviews = @movie.reviews.order(rating: :desc)  # Fetch reviews in descending order by rating
   end
 
   def edit

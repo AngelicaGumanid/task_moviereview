@@ -2,13 +2,13 @@
 <p><strong>Blurb:</strong> <%= @movie.blurb %></p>
 <p><strong>Average Rating:</strong> <%= @movie.average_rating %> / 5</p>
 
-<p><strong>Blurb:</strong> <%= @movie.blurb %></p>
 <p><strong>Genres:</strong></p>
 <ul>
   <% @movie.genres.each do |genre| %>
     <li><%= genre.name %></li>
   <% end %>
 </ul>
+
 <p><strong>Release Date:</strong> <%= @movie.date_released %></p>
 <p><strong>Country of Origin:</strong> <%= @movie.country_of_origin %></p>
 <p><strong>Showing Start:</strong> <%= @movie.showing_start %></p>
@@ -19,6 +19,10 @@
   <div>
     <strong><%= review.user.username %> (Rating: <%= review.rating %>)</strong>
     <p><%= review.content %></p>
+
+    <% if review.user == current_user %>
+      <%= link_to 'Edit', edit_movie_review_path(@movie, review) %>
+    <% end %>
   </div>
 <% end %>
 

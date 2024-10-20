@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :movies do
-    resources :reviews, only: [:create]
+    resources :reviews, only: [:create, :edit, :update, :destroy]
   end
 
   get 'dashboard', to: 'dashboard#index', as: 'dashboard'
