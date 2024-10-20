@@ -13,7 +13,7 @@
 <p><strong>Showing End:</strong> <%= @movie.showing_end %></p>
 
 <h3>Reviews</h3>
-<% @movie.reviews.each do |review| %>
+<% @reviews.each do |review| %>
   <div>
     <strong><%= review.user.username %> (Rating: <%= review.rating %>)</strong>
     <p><%= review.content %></p>
