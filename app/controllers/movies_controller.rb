@@ -11,6 +11,7 @@ class MoviesController < ApplicationController
 
   def create
     @movie = current_user.movies.build(movie_params)
+    @movie.generate_short_url
 
     if @movie.save
       flash[:notice] = 'Product was successfully created.'
@@ -40,6 +41,16 @@ class MoviesController < ApplicationController
     else
       flash.now[:alert] = 'There was a problem updating the movie.'
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def redirect_short_url
+    @movie = Movie.find_by(short_url: params[:short_url])
+    if @movie
+      redirect_to @movie
+    else
+      flash[:alert] = 'Movie not found.'
+      redirect_to movies_path
     end
   end
 
