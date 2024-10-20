@@ -16,7 +16,7 @@
       <td><%= movie.title %></td>
       <td><%= movie.average_rating %> / 5</td>
       <td>
-        <%= link_to 'Show', movie %>
+        <%= link_to 'Show', short_movie_path(movie.short_url) %>
         <%= link_to 'Edit', edit_movie_path(movie) %>
         <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
       </td>

@@ -8,4 +8,5 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index', as: 'dashboard'
   get 'movies/s/:short_url', to: 'movies#redirect_short_url', as: :short_movie
+
 end

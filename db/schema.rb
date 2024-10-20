@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_20_212313) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.string "short_url"
+    t.index ["short_url"], name: "index_movies_on_short_url", unique: true
     t.index ["user_id"], name: "index_movies_on_user_id"
   end
 

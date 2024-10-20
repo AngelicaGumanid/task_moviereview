@@ -11,11 +11,10 @@ class MoviesController < ApplicationController
 
   def create
     @movie = current_user.movies.build(movie_params)
-    @movie.generate_short_url
 
     if @movie.save
       flash[:notice] = 'Product was successfully created.'
-      redirect_to @movie
+      redirect_to short_movie_path(@movie.short_url)
     else
       flash.now[:alert] = 'There was a problem creating the movie.'
       render :new, status: :unprocessable_entity
@@ -23,10 +22,21 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
-    @reviews = @movie.reviews.order(rating: :desc)
-    @review = Review.new
+    if params[:short_url]
+      @movie = Movie.find_by(short_url: params[:short_url])
+    else
+      @movie = Movie.find(params[:id])
+    end
+
+    if @movie.nil?
+      flash[:alert] = 'Movie not found.'
+      redirect_to movies_path
+    else
+      @reviews = @movie.reviews.order(rating: :desc)
+      @review = Review.new
+    end
   end
+
 
   def edit
     @movie = Movie.find(params[:id])
@@ -37,7 +47,7 @@ class MoviesController < ApplicationController
 
     if @movie.update(movie_params)
       flash[:notice] = 'Movie was successfully updated.'
-      redirect_to @movie
+      redirect_to short_movie_path(@movie.short_url)
     else
       flash.now[:alert] = 'There was a problem updating the movie.'
       render :edit, status: :unprocessable_entity
@@ -47,7 +57,9 @@ class MoviesController < ApplicationController
   def redirect_short_url
     @movie = Movie.find_by(short_url: params[:short_url])
     if @movie
-      redirect_to @movie
+      @reviews = @movie.reviews.order(rating: :desc)
+      @review = Review.new
+      render :show  # Render the show view
     else
       flash[:alert] = 'Movie not found.'
       redirect_to movies_path
