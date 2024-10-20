@@ -2,12 +2,25 @@
 
 <%= link_to 'Create New Movie', new_movie_path if user_signed_in? %>
 
-<ul>
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
   <% @movies.each do |movie| %>
-    <li>
-      <%= link_to movie.title, movie_path(movie) %>
-      - Released: <%= movie.date_released %>
-      - Country: <%= movie.country_of_origin %>
-    </li>
+    <tr>
+      <td><%= movie.title %></td>
+      <td>
+        <%= link_to 'Show', movie %>
+        <%= link_to 'Edit', edit_movie_path(movie) %>
+        <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
+
+<%= paginate @movies %>
