@@ -1,5 +1,7 @@
 class Movie < ApplicationRecord
   has_and_belongs_to_many :genres
+  has_many :reviews
+
   belongs_to :user
 
   validates :title, presence: true
