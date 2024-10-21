@@ -1,0 +1,80 @@
+/* Apply to body and html to ensure no additional scrolling */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: hidden; /* Prevent vertical scrolling */
+}
+
+.notice, .alert {
+    margin: 0; /* Remove any default margin */
+    padding: 0.5rem; /* Optional: Add some padding if you'd like */
+    text-align: center; /* Center the text */
+    color: #fff; /* Change color if needed */
+    background-color: #28a745; /* Green background for notice */
+}
+
+.alert {
+    background-color: #dc3545; /* Red background for alert */
+}
+
+.notice {
+    background-color: #007bff; /* Blue background for notice, change if needed */
+}
+
+
+.homepage {
+    background-image: url('kodacamp.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh; /* Full height of the viewport */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.homepage h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+.homepage h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+.homepage p {
+    font-size: 1.2rem;
+    color: white;
+    margin: 10px 0;
+}
+
+.homepage .btn {
+    background-color: #f03e3e;
+    border-color: #f03e3e;
+    margin-top: 20px; /* Space from the text */
+}
+
+.homepage .container-fluid {
+    padding: 0; /* Remove padding to make sure content fits */
+}
+
+.homepage .row {
+    height: 100%; /* Full height of the container */
+}
+
+.homepage .col-md-12 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    height: 100%;
+}

@@ -1,3 +1,9 @@
-<h1>Welcome to the Home Page</h1>
-
-<%= link_to "Sign Up", new_user_registration_path %>
+<div class="homepage container-fluid text-center">
+  <!-- Sign Up Button positioned below the text -->
+  <div class="row h-100">
+    <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
+      <h1>Welcome to Our Site</h1>
+      <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-lg", style: "color: white; background-color: transparent; border: 2px solid white;" %>
+    </div>
+  </div>
+</div>
