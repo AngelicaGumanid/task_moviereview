@@ -25,7 +25,7 @@ html, body {
 
 
 .homepage {
-    background-image: url('kodacamp.png');
+    background-image: url('kodacamp1.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -40,7 +40,7 @@ html, body {
 .homepage h1 {
     font-size: 4rem;
     font-weight: bold;
-    color: white;
+    color: black;
     margin: 0;
 }
 
@@ -58,9 +58,9 @@ html, body {
 }
 
 .homepage .btn {
-    background-color: #f03e3e;
-    border-color: #f03e3e;
-    margin-top: 20px; /* Space from the text */
+    color: black;
+    background-color: transparent;
+    border: 4px solid black;
 }
 
 .homepage .container-fluid {
