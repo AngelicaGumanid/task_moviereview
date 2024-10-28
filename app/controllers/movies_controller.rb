@@ -17,6 +17,7 @@ class MoviesController < ApplicationController
       end
     end
 
+    @top_hot_movies = Movie.top_hot_movies
     @movies = @movies.order(:title).page(params[:page]).per(5)
     # @movies = Movie.order(created_at: :desc).page(params[:page]).per(5)
 

@@ -25,4 +25,10 @@ class Movie < ApplicationRecord
   def average_rating
     reviews.average(:rating).to_f.round(2) || 0
   end
+
+  scope :ordered_by_rating, -> { left_joins(:reviews).group(:id).order('AVG(reviews.rating) DESC') }
+
+  def self.top_hot_movies
+    ordered_by_rating.limit(3)
+  end
 end

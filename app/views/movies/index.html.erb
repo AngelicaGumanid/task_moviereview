@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
 <h1>Movies</h1>
 
 <%= link_to 'Create New Movie', new_movie_path if user_signed_in? %>
@@ -32,7 +34,12 @@
   <% else %>
     <% @movies.each do |movie| %>
       <tr>
-        <td><%= movie.title %></td>
+        <td>
+          <%= movie.title %>
+          <% if @top_hot_movies.include?(movie) %>
+            <span class="hot-label">Hot</span>
+          <% end %>
+        </td>
         <td><%= movie.average_rating %> / 5</td>
         <td>
           <%= link_to 'Show', short_movie_path(movie.short_url) %>
